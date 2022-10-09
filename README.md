@@ -14,7 +14,7 @@ Assets are property of **Pixel Frog** under license 'Create Commons Zero (CC0)'.
 
 Be sure to check their work and consume their content!
 
-- [Clécio Espindola GameDev Channel](https://www.youtube.com/c/Cl%C3%A9cioEsp%C3%ADndola)
+- [Clécio Espindola GameDev Channel](https://www.youtube.com/c/Cl%C3%A9cioEsp%C3%ADndola) in Brazilian Portuguese.
 - [Pixel Frog Assets](https://pixelfrog-assets.itch.io/pixel-adventure-1)
 
 
