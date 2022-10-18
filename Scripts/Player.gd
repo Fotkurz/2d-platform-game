@@ -1,26 +1,37 @@
 extends KinematicBody2D
 
 
-export var gravity = 600
-export var walk_speed = 200
-export var jump_force = 500
-
 var velocity = Vector2.ZERO
 
-func _physics_process(delta):
+var move_speed = 240
+var gravity = 1200
+var jump_force = -780
+var is_grounded
+onready var raycasts = $raycasts
+
+func _physics_process(delta: float) -> void:
 	velocity.y += delta * gravity
 	
-	if Input.is_action_pressed("move_left"):
-		velocity.x = -walk_speed
-	elif Input.is_action_pressed("move_right"):
-		velocity.x = walk_speed
-	else:
-		velocity.x = 0
-		# smoothen the stop
-		# velocity.x = lerp(velocity.x, 0, 0.1)
+	if Input.is_action_just_pressed("jump"):
+		velocity.y = jump_force / 2
 	
-	if Input.is_action_pressed("jump") and is_on_floor():
-		velocity.y = -jump_force
+	_get_input()
 	 
-	velocity = move_and_slide(velocity, Vector2.UP)
+	velocity = move_and_slide(velocity)
 	
+	is_grounded = _check_is_ground()
+	
+func _get_input():
+	var move_direction = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))		
+	velocity.x = move_speed * move_direction
+	
+	if move_direction != 0:
+		$texture.scale.x = move_direction
+
+		
+func _check_is_ground():
+	for raycast in raycasts.get_children():
+		if raycast.is_colliding():
+			return true
+		return false
+	 
